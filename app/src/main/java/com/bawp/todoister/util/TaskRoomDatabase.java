@@ -22,7 +22,7 @@ public abstract class TaskRoomDatabase extends RoomDatabase {
     public static final ExecutorService databaseWriterExecutor
             = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    public static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback(){
+    public static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
 
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -37,12 +37,11 @@ public abstract class TaskRoomDatabase extends RoomDatabase {
     };
 
 
-
     public static TaskRoomDatabase getDatabase(final Context context) {
-        if (INSTANCE ==null){
-            synchronized (TaskRoomDatabase.class){
-                if (INSTANCE ==null){
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),TaskRoomDatabase.class, DATABASE_NAME)
+        if (INSTANCE == null) {
+            synchronized (TaskRoomDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), TaskRoomDatabase.class, DATABASE_NAME)
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
